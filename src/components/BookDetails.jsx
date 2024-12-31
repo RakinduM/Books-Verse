@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { BookContext } from "../contexts/BookContext";
 import Layout from "./layout/Layout";
+import DOMPurify from "dompurify";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -17,9 +18,13 @@ const BookDetails = () => {
     return <div>Select a book to view details</div>;
   }
 
+  const filteredDescription = DOMPurify.sanitize(
+    selectedBook.volumeInfo.description
+  );
+
   return (
     <Layout>
-      <div className="font-[sans-serif] p-4">
+      <div className="font-[sans-serif] p-4 mt-6">
         <div className="xl:max-w-screen-xl lg:max-w-screen-lg max-w-xl mx-auto">
           <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-8 max-lg:gap-12 max-sm:gap-8">
             <div className="w-full lg:sticky top-0 lg:col-span-2">
@@ -81,7 +86,9 @@ const BookDetails = () => {
                     <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                   </svg>
 
-                  <p className="text-sm text-gray-800 !ml-3">Adam Boduch</p>
+                  <p className="text-sm text-gray-800 !ml-3">
+                    {selectedBook.volumeInfo.authors?.join(", ")}
+                  </p>
                 </div>
                 <div className="flex items-center flex-wrap gap-4 mt-6">
                   <h4 className="text-gray-800 text-2xl font-bold">$17</h4>
@@ -93,92 +100,64 @@ const BookDetails = () => {
               </div>
 
               <hr className="my-6 border-gray-300" />
-
-
+              <div
+                dangerouslySetInnerHTML={{ __html: filteredDescription }}
+              ></div>
 
               <hr className="my-6 border-gray-300" />
-
-              <hr className="my-6 border-gray-300" />
+              <button className="btn btn-primary w-full">Preview Book</button>
             </div>
           </div>
         </div>
 
         <div className="mt-12 bg-gray-100 px-6 py-12">
           <div className="xl:max-w-screen-xl max-w-screen-lg mx-auto">
+            <h3 className="text-2xl font-bold text-gray-800 mb-5">
+              BOOK INFORMATION
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-6">
-                <h3 className="text-lg font-bold text-gray-800">
-                  PRODUCT INFORMATION
-                </h3>
+                <div>
+                  <h3 className="text-gray-800 text-sm font-bold">Title:</h3>
+                  <p className="text-sm text-gray-500 mt-2">
+                    {selectedBook.volumeInfo.title}
+                  </p>
+                </div>
 
                 <div>
-                  <h3 className="text-gray-800 text-sm font-bold">Material:</h3>
+                  <h3 className="text-gray-800 text-sm font-bold">Author:</h3>
                   <p className="text-sm text-gray-500 mt-2">
-                    100% Organic Cotton
+                    {selectedBook.volumeInfo.authors?.join(", ")}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-gray-800 text-sm font-bold">
-                    Care Guidelines:
+                    Publisher:
                   </h3>
                   <p className="text-sm text-gray-500 mt-2">
-                    Wash cold, tumble dry low, do not bleach.
+                    {selectedBook.volumeInfo.publisher}
                   </p>
-                </div>
-
-                <div>
-                  <h3 className="text-gray-800 text-sm font-bold">Features:</h3>
-                  <ul className="list-disc pl-5 mt-2 space-y-2 text-sm text-gray-500">
-                    <li>Eco-friendly, breathable fabric.</li>
-                    <li>ClassNameic fit for everyday comfort.</li>
-                    <li>Durable stitching for long-lasting wear.</li>
-                    <li>Available in multiple colors and sizes.</li>
-                  </ul>
                 </div>
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-lg font-bold text-gray-800">
-                  SHIPPING & RETURNS
-                </h3>
+                <div>
+                  <h3 className="text-gray-800 text-sm font-bold">
+                    Published Date:
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-2">
+                    {selectedBook.volumeInfo.publishedDate}
+                  </p>
+                </div>
 
-                <div className="space-y-4">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="text-gray-800 text-sm font-bold mb-2">
-                        Standard Shipping
-                      </p>
-                      <p className="text-gray-500 text-sm">
-                        Delivery in 3-5 business days
-                      </p>
-                    </div>
-                    <span className="text-gray-500 text-sm">$5.00</span>
-                  </div>
-
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="text-gray-800 text-sm font-bold mb-2">
-                        Expedited Shipping
-                      </p>
-                      <p className="text-gray-500 text-sm">
-                        Delivery in 1-2 business days
-                      </p>
-                    </div>
-                    <span className="text-gray-500 text-sm">$15.00</span>
-                  </div>
-
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="text-gray-800 text-sm font-bold mb-2">
-                        Pickup Option
-                      </p>
-                      <p className="text-gray-500 text-sm">
-                        Available within 24 hours
-                      </p>
-                    </div>
-                    <span className="text-gray-500 text-sm">FREE</span>
-                  </div>
+                <div>
+                  <h3 className="text-gray-800 text-sm font-bold">
+                    Page Count:
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-2">
+                    {selectedBook.volumeInfo.pageCount}
+                  </p>
                 </div>
 
                 <div className="space-y-2">

@@ -1,4 +1,5 @@
 import React from "react";
+import Logo from "/images/logoBV.png"
 
 const Navbar = () => {
   return (
@@ -29,43 +30,20 @@ const Navbar = () => {
               <a>Item 1</a>
             </li>
             <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
               <a>Item 3</a>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <img src={Logo} alt="Logo" className="w-8" />
+        <a className="btn btn-ghost text-xl">Book-Verse</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Item 1</a>
+            <a>Home</a>
           </li>
           <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
+            <a>Book Details</a>
           </li>
         </ul>
       </div>

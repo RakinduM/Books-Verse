@@ -5,22 +5,8 @@ function Footer() {
     <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900  pt-12 pb-6 px-10 font-sans tracking-wide relative">
       <div className="max-w-screen-xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <h2 className="text-white text-sm uppercase font-semibold mb-4">Quick Links</h2>
-            <ul className="space-y-3">
-              <li>
-                <a href="javascript:void(0)" className="text-gray-400 hover:text-white text-sm transition-all">Newsroom</a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" className="text-gray-400 hover:text-white text-sm transition-all">Tailwind CSS</a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" className="text-gray-400 hover:text-white text-sm transition-all">Careers</a>
-              </li>
-            </ul>
-          </div>
 
-          <div>
+          <div className="lg:col-span-2">
             <h2 className="text-white text-sm uppercase font-semibold mb-4">Follow Us</h2>
             <ul className="space-y-3">
               <li>
@@ -50,8 +36,9 @@ function Footer() {
             </ul>
           </div>
 
-          <div className="flex items-center lg:justify-center max-sm:-order-1">
-            <a href='javascript:void(0)'><img src="https://readymadeui.com/readymadeui-light.svg" alt="logo" className='sm:w-56 w-40' /></a>
+          <div className="flex flex-col items-center lg:justify-center max-sm:-order-1">
+            <a href='javascript:void(0)'><img src="/images/logoBV.png" alt="logo" className='sm:w-56 w-20' /></a>
+            <h2 className="text-white uppercase font-semibold text-2xl">Book-Verse</h2>
           </div>
         </div>
 
@@ -82,7 +69,7 @@ function Footer() {
             </a>
           </div>
 
-          <p className='text-gray-400 text-sm'>© ReadymadeUI. All rights reserved.
+          <p className='text-gray-400 text-sm'>© BookVerse. All rights reserved.
           </p>
         </div>
       </div>

@@ -9,7 +9,7 @@ const Hero = () => {
         className="hero min-h-screen carousel-item"
         style={{
           backgroundImage:
-            "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+            "url(/images/hero-1.jpg)",
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
@@ -28,7 +28,7 @@ const Hero = () => {
         className="hero min-h-screen carousel-item"
         style={{
           backgroundImage:
-            "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+            "url(/images/hero-2.jpg)",
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
