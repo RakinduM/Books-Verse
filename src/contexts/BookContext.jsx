@@ -1,64 +1,53 @@
-import React, { createContext, useContext, useState, useEffect, useRef } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 // Create the context
-const BookContext = createContext();
+export const BookContext = createContext();
 
+// Context provider
 export const BookProvider = ({ children }) => {
+  const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [loading, setLoading] = useState(false)
   const [cache, setCache] = useState(() => {
+    // Initialize the cache from local storage if available
     const storedCache = localStorage.getItem("bookCache");
     return storedCache ? JSON.parse(storedCache) : {};
   });
 
-  // Ref to store the AbortController for cancellation
-  const abortControllerRef = useRef(null);
-
+  // Persist cache to local storage whenever it updates
   useEffect(() => {
+    // Fetch trending books on initial load
+    fetchBooks("trending");
     localStorage.setItem("bookCache", JSON.stringify(cache));
   }, [cache]);
 
+  // Fetch books by query
   const fetchBooks = async (searchQuery) => {
-    // Cancel any ongoing request
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-    }
-
-    // Create a new AbortController
-    const controller = new AbortController();
-    abortControllerRef.current = controller;
-
+    setLoading(true)
     if (cache[searchQuery]) {
       setBooks(cache[searchQuery]);
+      setLoading(false)
       return;
     }
 
     try {
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${import.meta.env.VITE_API_KEY}`,
-        { signal: controller.signal }
+        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${import.meta.env.VITE_API_KEY}`
       );
       const results = response.data.items || [];
       setCache((prev) => ({ ...prev, [searchQuery]: results }));
       setBooks(results);
     } catch (error) {
-      if (error.name === "CanceledError") {
-        console.log("Fetch cancelled");
-      } else {
-        console.error("Error fetching books:", error);
-      }
+      console.error("Error fetching books:", error);
+    } finally {
+      setLoading(false)
     }
   };
 
+  // Fetch book details
   const fetchBookDetails = async (bookId) => {
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-    }
-
-    const controller = new AbortController();
-    abortControllerRef.current = controller;
-
     if (cache[bookId]) {
       setSelectedBook(cache[bookId]);
       return;
@@ -66,28 +55,26 @@ export const BookProvider = ({ children }) => {
 
     try {
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes/${bookId}`,
-        { signal: controller.signal }
+        `https://www.googleapis.com/books/v1/volumes/${bookId}`
       );
       const bookDetails = response.data;
       setCache((prev) => ({ ...prev, [bookId]: bookDetails }));
       setSelectedBook(bookDetails);
     } catch (error) {
-      if (error.name === "CanceledError") {
-        console.log("Fetch cancelled");
-      } else {
-        console.error("Error fetching book details:", error);
-      }
+      console.error("Error fetching book details:", error);
     }
   };
 
   return (
-    <BookContext.Provider value={{ books, fetchBooks, selectedBook, fetchBookDetails }}>
+    <BookContext.Provider
+      value={{ query, setQuery, books, fetchBooks, selectedBook, fetchBookDetails, loading }}
+    >
       {children}
     </BookContext.Provider>
   );
 };
 
-export const useBooks = () => {
-  return useContext(BookContext);
-};
+// // Custom hook for consuming the context
+// export const useBooks = () => {
+//   return useContext(BookContext);
+// };

@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { BookContext } from '../contexts/BookContext';
 
 const SearchBar = () => {
+  const { query, setQuery, fetchBooks } = useContext(BookContext);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetchBooks(query);
+  };
+
   return (
-    <form className="w-full max-w-lg mb-6 flex">
+    <form className="w-full max-w-lg mb-6 flex" onSubmit={handleSearch}>
       <input
         type="text"
         placeholder="Search for books..."
         className="flex-grow p-2 border border-gray-300 rounded-l-md"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
       />
       <button
         type="submit"
@@ -15,7 +25,7 @@ const SearchBar = () => {
         Search
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;
