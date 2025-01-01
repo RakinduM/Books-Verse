@@ -4,33 +4,33 @@ import { Link } from "react-router-dom";
 const BookCard = ({ book }) => {
   return (
     <Link to={`/book/${book.id}`}>
-      <div class="bg-white flex flex-col overflow-hidden cursor-pointer hover:-translate-y-1 hover:shadow-md transition-all rounded-md">
-        <div class="w-full">
+      <div className="bg-white flex flex-col overflow-hidden cursor-pointer hover:-translate-y-3 hover:shadow-md transition-all rounded-md">
+        <div className="w-full">
           <img
             src={book.volumeInfo.imageLinks.thumbnail}
             alt="Product 1"
-            class="w-full object-cover object-top aspect-[230/307]"
+            className="w-full object-cover object-top aspect-[230/307]"
           />
         </div>
 
-        <div class="p-2 flex-1 flex flex-col">
-          <div class="flex-1">
-            <h2 class="sm:text-base font-semibold text-center">
+        <div className="p-2 flex-1 flex flex-col">
+          <div className="flex-1">
+            <h2 className="sm:text-base font-semibold text-center">
               {book.volumeInfo.title}
             </h2>
-            <p class="mt-1 text-gray-500 text-center">{book.volumeInfo.authors?.join(', ')}</p>
-            <div class="flex flex-wrap justify-between gap-2 mt-2">
-              <div class="flex gap-2">
-                <h6 class="text-sm sm:text-base font-bold text-gray-800">
+            <p className="mt-1 text-gray-500 text-center">{book.volumeInfo.authors?.join(', ')}</p>
+            <div className="flex flex-wrap justify-between gap-2 mt-2">
+              <div className="flex gap-2">
+                <h6 className="text-sm sm:text-base font-bold text-gray-800">
                   $10
                 </h6>
-                <h6 class="text-sm sm:text-base text-gray-500">
+                <h6 className="text-sm sm:text-base text-gray-500">
                   <strike>$15</strike>
                 </h6>
               </div>
-              <div class="flex items-center gap-0.5">
+              <div className="flex items-center gap-0.5">
                 <svg
-                  class="w-[14px] h-[14px] fill-blue-600"
+                  className="w-[14px] h-[14px] fill-blue-600"
                   viewBox="0 0 14 13"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ const BookCard = ({ book }) => {
                   <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                 </svg>
                 <svg
-                  class="w-[14px] h-[14px] fill-blue-600"
+                  className="w-[14px] h-[14px] fill-blue-600"
                   viewBox="0 0 14 13"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const BookCard = ({ book }) => {
                   <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                 </svg>
                 <svg
-                  class="w-[14px] h-[14px] fill-blue-600"
+                  className="w-[14px] h-[14px] fill-blue-600"
                   viewBox="0 0 14 13"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const BookCard = ({ book }) => {
                   <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                 </svg>
                 <svg
-                  class="w-[14px] h-[14px] fill-[#CED5D8]"
+                  className="w-[14px] h-[14px] fill-[#CED5D8]"
                   viewBox="0 0 14 13"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +62,7 @@ const BookCard = ({ book }) => {
                   <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                 </svg>
                 <svg
-                  class="w-[14px] h-[14px] fill-[#CED5D8]"
+                  className="w-[14px] h-[14px] fill-[#CED5D8]"
                   viewBox="0 0 14 13"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -72,15 +72,15 @@ const BookCard = ({ book }) => {
               </div>
             </div>
           </div>
-          <div class="flex items-center gap-2 mt-4">
+          <div className="flex items-center gap-2 mt-4">
             <div
-              class="bg-pink-100 hover:bg-pink-200 w-12 h-9 flex items-center justify-center rounded cursor-pointer"
+              className="bg-pink-100 hover:bg-pink-200 w-12 h-9 flex items-center justify-center rounded cursor-pointer"
               title="Wishlist"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16px"
-                class="fill-pink-600 inline-block"
+                className="fill-pink-600 inline-block"
                 viewBox="0 0 64 64"
               >
                 <path
@@ -91,7 +91,7 @@ const BookCard = ({ book }) => {
             </div>
             <button
               type="button"
-              class="text-sm px-2 min-h-[36px] w-full bg-blue-600 hover:bg-blue-700 text-white tracking-wide ml-auto outline-none border-none rounded"
+              className="text-sm px-2 min-h-[36px] w-full bg-blue-600 hover:bg-blue-700 text-white tracking-wide ml-auto outline-none border-none rounded"
             >
               Add to cart
             </button>
