@@ -6,14 +6,14 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const App = () => {
-  AOS.init()
+  AOS.init();
 
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/book/:id" element={<BookDetails/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/book/:id" element={<BookDetails />} />
         </Routes>
       </BrowserRouter>
     </div>

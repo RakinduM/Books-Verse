@@ -14,13 +14,13 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Search for books..."
-        className="flex-grow p-2 border border-gray-300 rounded-l-md"
+        className="flex-grow p-2 border border-gray-300 rounded-l-md text-black"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
       <button
         type="submit"
-        className="p-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600"
+        className="p-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700"
       >
         Search
       </button>
