@@ -38,7 +38,6 @@ Ensure you have the following installed:
    ```bash
    git clone https://github.com/RakinduM/Books-Verse.git
 
-
 2.  Navigate to the project directory:
 
         cd Book-Verse
