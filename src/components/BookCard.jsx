@@ -24,19 +24,12 @@ const BookCard = ({ book }) => {
             <p className="mt-1 text-gray-500 text-center">
               {book.volumeInfo.authors?.join(", ")}
             </p>
-            <div className="flex flex-wrap justify-between gap-2 mt-2">
-              <div className="flex gap-2">
-                <h6 className="text-sm sm:text-base font-bold text-gray-800">
-                  $10
-                </h6>
-                <h6 className="text-sm sm:text-base text-gray-500">
-                  <strike>$15</strike>
-                </h6>
-              </div>
+            <div className="flex items-center gap-2 mt-2">
+
             </div>
           </div>
           <div className="flex items-center gap-2 mt-4">
-            <button className="btn btn-primary w-full">Preview Book</button>
+            <button className="btn btn-primary w-full" onClick={() => window.open(book.volumeInfo.previewLink, '_blank')}>Preview Book</button>
           </div>
         </div>
       </div>

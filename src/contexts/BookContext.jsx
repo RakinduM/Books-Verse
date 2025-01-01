@@ -34,7 +34,7 @@ export const BookProvider = ({ children }) => {
 
     try {
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${import.meta.env.VITE_API_KEY}`
+        `/api/volumes?q=${searchQuery}&key=${import.meta.env.VITE_API_KEY}`
       );
       const results = response.data.items || [];
       setCache((prev) => ({ ...prev, [searchQuery]: results }));
@@ -55,7 +55,7 @@ export const BookProvider = ({ children }) => {
 
     try {
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes/${bookId}`
+        `/api/volumes/${bookId}`
       );
       const bookDetails = response.data;
       setCache((prev) => ({ ...prev, [bookId]: bookDetails }));

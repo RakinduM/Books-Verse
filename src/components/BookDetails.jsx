@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { BookContext } from "../contexts/BookContext";
 import Layout from "./layout/Layout";
 import DOMPurify from "dompurify";
+import Error from "./Error";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ const BookDetails = () => {
   }, [id]);
 
   if (!selectedBook) {
-    return <div>Select a book to view details</div>;
+    return <Error />;
   }
 
   const filteredDescription = DOMPurify.sanitize(
@@ -24,7 +25,7 @@ const BookDetails = () => {
 
   return (
     <Layout>
-      <div className="font-[sans-serif] p-4 mt-6">
+      <div className="font-[sans-serif] p-4  py-11">
         <div className="xl:max-w-screen-xl lg:max-w-screen-lg max-w-xl mx-auto">
           <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-8 max-lg:gap-12 max-sm:gap-8">
             <div className="w-full lg:sticky top-0 lg:col-span-2">
@@ -44,58 +45,54 @@ const BookDetails = () => {
                 <h3 className="text-2xl font-bold text-gray-800">
                   {selectedBook.volumeInfo.title}
                 </h3>
-                <div className="flex items-center space-x-1 mt-2">
-                  <svg
-                    className="w-4 h-4 fill-purple-800"
-                    viewBox="0 0 14 13"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                  </svg>
-                  <svg
-                    className="w-4 h-4 fill-purple-800"
-                    viewBox="0 0 14 13"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                  </svg>
-                  <svg
-                    className="w-4 h-4 fill-purple-800"
-                    viewBox="0 0 14 13"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                  </svg>
-                  <svg
-                    className="w-4 h-4 fill-purple-800"
-                    viewBox="0 0 14 13"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                  </svg>
-                  <svg
-                    className="w-4 h-4 fill-[#CED5D8]"
-                    viewBox="0 0 14 13"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                  </svg>
-
-                  <p className="text-sm text-gray-800 !ml-3">
+                <div className="flex mt-2">
+                  <p className="text-sm text-gray-800">
                     {selectedBook.volumeInfo.authors?.join(", ")}
                   </p>
                 </div>
                 <div className="flex items-center flex-wrap gap-4 mt-6">
-                  <h4 className="text-gray-800 text-2xl font-bold">$17</h4>
-                  <p className="text-gray-500 text-lg">
-                    <strike>$22</strike>{" "}
-                    <span className="text-sm ml-1.5">Tax included</span>
-                  </p>
+                  <div className="flex items-center space-x-1 mt-2">
+                    <svg
+                      className="w-4 h-4 fill-purple-800"
+                      viewBox="0 0 14 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                    </svg>
+                    <svg
+                      className="w-4 h-4 fill-purple-800"
+                      viewBox="0 0 14 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                    </svg>
+                    <svg
+                      className="w-4 h-4 fill-purple-800"
+                      viewBox="0 0 14 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                    </svg>
+                    <svg
+                      className="w-4 h-4 fill-purple-800"
+                      viewBox="0 0 14 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                    </svg>
+                    <svg
+                      className="w-4 h-4 fill-[#CED5D8]"
+                      viewBox="0 0 14 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                    </svg>
+                  </div>
                 </div>
               </div>
 
@@ -105,12 +102,12 @@ const BookDetails = () => {
               ></div>
 
               <hr className="my-6 border-gray-300" />
-              <button className="btn btn-primary w-full">Preview Book</button>
+              <button className="btn btn-primary w-full" onClick={() => window.open(selectedBook.volumeInfo.previewLink, '_blank')}>Preview Book</button>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 bg-gray-100 px-6 py-12">
+        <div data-aos="fade-right" className="mt-12 bg-base-300 px-6 py-12">
           <div className="xl:max-w-screen-xl max-w-screen-lg mx-auto">
             <h3 className="text-2xl font-bold text-gray-800 mb-5">
               BOOK INFORMATION
@@ -160,23 +157,13 @@ const BookDetails = () => {
                   </p>
                 </div>
 
-                <div className="space-y-2">
-                  <p className="text-sm text-gray-500">
-                    For more details on our return policy,{" "}
-                    <span className="underline">click here</span>.
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    A $3.00 processing fee applies to returns.{" "}
-                    <span className="underline">Learn more</span>.
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Returns for online orders must be initiated online. In-store
-                    returns are not accepted.
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    To promote sustainability, we now use electronic return
-                    labels. <span className="underline">Read more</span>.
-                  </p>
+                <div>
+                  <h3 class="text-gray-800 text-sm font-bold">Categories:</h3>
+                  <ul class="list-disc pl-5 mt-2 space-y-2 text-sm text-gray-500">
+                    {selectedBook.volumeInfo.categories.map((category) => (
+                      <li>{category}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>

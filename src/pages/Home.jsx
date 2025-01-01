@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { BookContext } from "../contexts/BookContext";
 import Layout from "../components/layout/Layout";
 import Hero from "../components/Hero";

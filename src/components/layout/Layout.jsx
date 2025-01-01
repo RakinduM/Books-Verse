@@ -24,6 +24,7 @@ const Layout = ({ children }) => {
         initial="hidden"
         animate="visible"
         transition={{duration: 0.5, delay: 0.25}}
+        className="bg-base-200"
       >
         {children}
       </motion.div>

@@ -6,7 +6,7 @@ const BookList = ({ books }) => {
     <div
       data-aos="fade-left"
       data-aos-duration="300"
-      className="font-sans p-4 mx-auto lg:max-w-6xl md:max-w-3xl bg-base-200"
+      className="font-sans p-4 mx-auto lg:max-w-6xl md:max-w-3xl"
     >
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         {books.map((book) => (
