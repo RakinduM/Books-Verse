@@ -40,7 +40,7 @@ Ensure you have the following installed:
 
 2.  Navigate to the project directory:
 
-        cd Book-Verse
+        cd Books-Verse
 
 3. Install the dependencies
 
