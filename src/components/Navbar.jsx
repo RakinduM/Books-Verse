@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-md">
-      <div className="navbar-start">
+      <div className="navbar-start lg:px-3">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -48,7 +48,7 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end lg:px-3">
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}

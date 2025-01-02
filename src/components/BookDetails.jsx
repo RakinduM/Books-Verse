@@ -4,10 +4,11 @@ import { BookContext } from "../contexts/BookContext";
 import Layout from "./layout/Layout";
 import DOMPurify from "dompurify";
 import Error from "./Error";
+import Loader from "./Loader";
 
 const BookDetails = () => {
   const { id } = useParams();
-  const { selectedBook, fetchBookDetails } = useContext(BookContext);
+  const { selectedBook, fetchBookDetails, loading } = useContext(BookContext);
 
   useEffect(() => {
     if (id) {
@@ -15,12 +16,16 @@ const BookDetails = () => {
     }
   }, [id]);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   if (!selectedBook) {
     return <Error />;
   }
 
   const filteredDescription = DOMPurify.sanitize(
-    selectedBook.volumeInfo.description
+    selectedBook.volumeInfo.description || "No description available for this book"
   );
 
   return (
@@ -33,7 +38,7 @@ const BookDetails = () => {
                 <div className="flex-1">
                   <img
                     src={selectedBook.volumeInfo.imageLinks.medium}
-                    alt="Product"
+                    alt={selectedBook.volumeInfo.title || "Book Cover"}
                     className="w-full aspect-[750/800] object-top object-cover"
                   />
                 </div>
@@ -47,7 +52,7 @@ const BookDetails = () => {
                 </h3>
                 <div className="flex mt-2">
                   <p className="text-sm text-gray-800">
-                    {selectedBook.volumeInfo.authors?.join(", ")}
+                    {selectedBook.volumeInfo.authors?.join(", ") || "Author Unknown"}
                   </p>
                 </div>
                 <div className="flex items-center flex-wrap gap-4 mt-6">
@@ -102,7 +107,14 @@ const BookDetails = () => {
               ></div>
 
               <hr className="my-6 border-gray-300" />
-              <button className="btn btn-primary w-full" onClick={() => window.open(selectedBook.volumeInfo.previewLink, '_blank')}>Preview Book</button>
+              <button
+                className="btn btn-primary w-full"
+                onClick={() =>
+                  window.open(selectedBook.volumeInfo.previewLink, "_blank")
+                }
+              >
+                Preview Book
+              </button>
             </div>
           </div>
         </div>
@@ -124,7 +136,7 @@ const BookDetails = () => {
                 <div>
                   <h3 className="text-gray-800 text-sm font-bold">Author:</h3>
                   <p className="text-sm text-gray-500 mt-2">
-                    {selectedBook.volumeInfo.authors?.join(", ")}
+                    {selectedBook.volumeInfo.authors?.join(", ") || "Author Unknown"}
                   </p>
                 </div>
 
@@ -133,7 +145,7 @@ const BookDetails = () => {
                     Publisher:
                   </h3>
                   <p className="text-sm text-gray-500 mt-2">
-                    {selectedBook.volumeInfo.publisher}
+                    {selectedBook.volumeInfo.publisher || "Publisher Unkown"}
                   </p>
                 </div>
               </div>
@@ -144,7 +156,7 @@ const BookDetails = () => {
                     Published Date:
                   </h3>
                   <p className="text-sm text-gray-500 mt-2">
-                    {selectedBook.volumeInfo.publishedDate}
+                    {selectedBook.volumeInfo.publishedDate || "Published Date Unknown"}
                   </p>
                 </div>
 
@@ -153,7 +165,7 @@ const BookDetails = () => {
                     Page Count:
                   </h3>
                   <p className="text-sm text-gray-500 mt-2">
-                    {selectedBook.volumeInfo.pageCount}
+                    {selectedBook.volumeInfo.pageCount || "Page Count Unavailabe"}
                   </p>
                 </div>
 

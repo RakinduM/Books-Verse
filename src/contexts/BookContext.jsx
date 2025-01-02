@@ -9,7 +9,7 @@ export const BookProvider = ({ children }) => {
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [cache, setCache] = useState(() => {
     // Initialize the cache from local storage if available
     const storedCache = localStorage.getItem("bookCache");
@@ -25,10 +25,10 @@ export const BookProvider = ({ children }) => {
 
   // Fetch books by query
   const fetchBooks = async (searchQuery) => {
-    setLoading(true)
+    setLoading(true);
     if (cache[searchQuery]) {
       setBooks(cache[searchQuery]);
-      setLoading(false)
+      setLoading(false);
       return;
     }
 
@@ -42,32 +42,44 @@ export const BookProvider = ({ children }) => {
     } catch (error) {
       console.error("Error fetching books:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
   // Fetch book details
   const fetchBookDetails = async (bookId) => {
+    setLoading(true);
+    setSelectedBook(null);
+
     if (cache[bookId]) {
       setSelectedBook(cache[bookId]);
+      setLoading(false);
       return;
     }
 
     try {
-      const response = await axios.get(
-        `/api/volumes/${bookId}`
-      );
+      const response = await axios.get(`/api/volumes/${bookId}`);
       const bookDetails = response.data;
       setCache((prev) => ({ ...prev, [bookId]: bookDetails }));
       setSelectedBook(bookDetails);
     } catch (error) {
       console.error("Error fetching book details:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <BookContext.Provider
-      value={{ query, setQuery, books, fetchBooks, selectedBook, fetchBookDetails, loading }}
+      value={{
+        query,
+        setQuery,
+        books,
+        fetchBooks,
+        selectedBook,
+        fetchBookDetails,
+        loading,
+      }}
     >
       {children}
     </BookContext.Provider>
