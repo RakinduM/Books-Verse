@@ -73,8 +73,3 @@ export const BookProvider = ({ children }) => {
     </BookContext.Provider>
   );
 };
-
-// // Custom hook for consuming the context
-// export const useBooks = () => {
-//   return useContext(BookContext);
-// };
